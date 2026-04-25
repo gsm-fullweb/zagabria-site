@@ -679,6 +679,27 @@
 
         function confirmToWA() {
             const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            
+            // Enviar para Google Calendar (Automático)
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx5gaN6pk_WCRKSFF1qdofRH8-lnNzn7xgkR_58EJwNsNE5FNOvZFkLOpfewT2IvH64/exec';
+            
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    service: booking.service,
+                    date: booking.date,
+                    time: booking.time,
+                    total: booking.total
+                })
+            }).then(() => {
+                console.log('Agendamento enviado para o Google Calendar');
+            }).catch(err => console.error('Erro ao enviar para o Google:', err));
+
             const text = `Olá! Gostaria de agendar um horário:\n\n*Nome:* ${name}\n*Serviço:* ${booking.service}\n*Data:* ${document.getElementById('s-date').textContent}\n*Horário:* ${booking.time}\n*Total:* ${booking.total}\n\nConfirma disponibilidade?`;
             window.open(`https://wa.me/5517992015091?text=${encodeURIComponent(text)}`, '_blank');
         }
