@@ -330,7 +330,27 @@
                         <h3 style="font-size:32px; margin-bottom:10px;">Tudo pronto?</h3>
                         <p style="color:#666; margin-bottom:30px;">Confira os detalhes antes de confirmar.</p>
                         <div id="confirmDetails"></div>
-                        <div class="btn-group-mobile" style="display:flex; gap:15px; margin-top:40px;">
+
+                        <!-- PIX SECTION -->
+                        <div class="pix-block" id="pixBlock" style="display:none; margin-top:30px;">
+                            <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
+                                <div style="background:var(--gold); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px;">⚡</div>
+                                <div>
+                                    <p style="font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Pagamento via Pix</p>
+                                    <p style="color:#666; font-size:12px;">Pague com antecedência para garantir seu horário</p>
+                                </div>
+                            </div>
+                            <div style="background:#0A0A0A; border:1px solid #222; padding:20px; border-radius:4px;">
+                                <p style="font-size:11px; color:#666; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Chave Pix (Telefone)</p>
+                                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                                    <span id="pixKey" style="font-size:18px; font-weight:700; color:var(--gold); letter-spacing:1px;">+55 17 98138-7307</span>
+                                    <button class="btn btn-outline" style="padding:10px 20px; font-size:11px; white-space:nowrap;" onclick="copyPix()">Copiar</button>
+                                </div>
+                                <p style="margin-top:15px; font-size:11px; color:#666;">Valor: <strong id="pixTotal" style="color:var(--white);"></strong></p>
+                            </div>
+                        </div>
+
+                        <div class="btn-group-mobile" style="display:flex; gap:15px; margin-top:30px;">
                             <button class="btn btn-outline" style="flex:1;" onclick="goStep(3)">← Ajustar</button>
                             <button class="btn btn-gold" style="flex:2;" onclick="confirmToWA()">Confirmar no WhatsApp</button>
                         </div>
@@ -353,8 +373,8 @@
                         <span class="summary-value" id="s-time">—</span>
                     </div>
                     <div class="summary-row">
-                        <span class="summary-label">Duração</span>
-                        <span class="summary-value" id="s-duration">—</span>
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value" id="s-total" style="color:var(--gold); font-weight:700;">—</span>
                     </div>
                 </div>
             </div>
@@ -671,10 +691,26 @@
                     <p style="margin-bottom:10px;"><strong>Nome:</strong> ${name}</p>
                     <p style="margin-bottom:10px;"><strong>Serviço:</strong> ${booking.service}</p>
                     <p style="margin-bottom:10px;"><strong>Data:</strong> ${document.getElementById('s-date').textContent} às ${booking.time}</p>
-                    <p><strong>Total:</strong> ${booking.total}</p>
+                    <p><strong>Total:</strong> <span style="color:var(--gold); font-weight:700;">${booking.total}</span></p>
                 </div>
             `;
+
+            // Mostrar bloco Pix com o total
+            document.getElementById('pixTotal').textContent = booking.total;
+            document.getElementById('pixBlock').style.display = 'block';
+
             goStep(4);
+        }
+
+        function copyPix() {
+            const key = '+5517981387307';
+            navigator.clipboard.writeText(key).then(() => {
+                const btn = event.target;
+                btn.textContent = 'Copiado ✓';
+                btn.style.color = 'var(--gold)';
+                btn.style.borderColor = 'var(--gold)';
+                setTimeout(() => { btn.textContent = 'Copiar'; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
+            });
         }
 
         function confirmToWA() {
