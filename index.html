@@ -256,25 +256,25 @@
                         <h3 style="font-size:32px; margin-bottom:10px;">Escolha seu serviço</h3>
                         <p style="color:#666; margin-bottom:10px;">Selecione o serviço que deseja realizar.</p>
                         <div class="service-options">
-                            <div class="service-opt" onclick="selectService(this, 'Corte', 45)"
+                            <div class="service-opt" onclick="selectService(this, 'Corte', 45, 40)"
                                  data-service="Corte" data-duration="45">
                                 <div><h4>Corte</h4><p>Corte personalizado com acabamento premium</p></div>
-                                <strong>45 min</strong>
+                                <strong>R$ 40</strong>
                             </div>
-                            <div class="service-opt" onclick="selectService(this, 'Corte e Sobrancelha', 55)"
+                            <div class="service-opt" onclick="selectService(this, 'Corte e Sobrancelha', 55, 45)"
                                  data-service="Corte e Sobrancelha" data-duration="55">
                                 <div><h4>Corte e Sobrancelha</h4><p>Corte + design de sobrancelha na navalha</p></div>
-                                <strong>55 min</strong>
+                                <strong>R$ 45</strong>
                             </div>
-                            <div class="service-opt" onclick="selectService(this, 'Corte e Barba', 75)"
+                            <div class="service-opt" onclick="selectService(this, 'Corte e Barba', 75, 65)"
                                  data-service="Corte e Barba" data-duration="75">
                                 <div><h4>Corte e Barba</h4><p>Corte + barba com toalha quente</p></div>
-                                <strong>75 min</strong>
+                                <strong>R$ 65</strong>
                             </div>
-                            <div class="service-opt" onclick="selectService(this, 'Corte, Sobrancelha e Barba', 90)"
+                            <div class="service-opt" onclick="selectService(this, 'Corte, Sobrancelha e Barba', 90, 70)"
                                  data-service="Corte, Sobrancelha e Barba" data-duration="90">
                                 <div><h4>Corte, Sobrancelha e Barba</h4><p>Experiência completa Zagabria</p></div>
-                                <strong>90 min</strong>
+                                <strong>R$ 70</strong>
                             </div>
                         </div>
                         <button class="btn btn-gold" style="margin-top:40px; width:100%;" onclick="goStep(2)">Escolher Data →</button>
@@ -542,7 +542,7 @@
         </div>
     </footer>
 
-    <a href="#" class="whatsapp-float">
+    <a href="https://wa.me/5517981387307" class="whatsapp-float" target="_blank">
         <svg fill="#fff" width="45" height="45" viewBox="0 0 24 24"><path d="M12.031 6.172c-2.203 0-4.007 1.77-4.007 3.945 0 2.176 1.804 3.945 4.007 3.945 2.203 0 4.007-1.77 4.007-3.945s-1.803-3.945-4.007-3.945zm0 6.59c-1.47 0-2.664-1.186-2.664-2.645 0-1.458 1.194-2.645 2.664-2.645s2.663 1.186 2.663 2.645c0 1.458-1.193 2.645-2.663 2.645zm4.331-10.43c-2.288-1.503-6.103-1.503-8.39 0-3.351 2.2-3.351 5.767 0 7.967 2.288 1.503 6.103 1.503 8.39 0 3.351-2.2 3.351-5.767 0-7.967zm-1.121 6.3c-1.666 1.094-4.437 1.094-6.103 0-2.441-1.603-2.441-4.204 0-5.808 1.666-1.094 4.437-1.094 6.103 0 2.441 1.604 2.441 4.205 0 5.808z"/></svg>
     </a>
 
@@ -701,7 +701,7 @@
             }).catch(err => console.error('Erro ao enviar para o Google:', err));
 
             const text = `Olá! Gostaria de agendar um horário:\n\n*Nome:* ${name}\n*Serviço:* ${booking.service}\n*Data:* ${document.getElementById('s-date').textContent}\n*Horário:* ${booking.time}\n*Total:* ${booking.total}\n\nConfirma disponibilidade?`;
-            window.open(`https://wa.me/5517992015091?text=${encodeURIComponent(text)}`, '_blank');
+            window.open(`https://wa.me/5517981387307?text=${encodeURIComponent(text)}`, '_blank');
         }
 
         (function() {
